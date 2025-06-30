@@ -13,8 +13,11 @@ import {
   Star,
   TrendingUp
 } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Home = () => {
+  const { t } = useTranslation();
+  
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -81,12 +84,12 @@ const Home = () => {
       className="min-h-screen"
     >
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-teal-50 via-white to-emerald-50">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-project-blue/10">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-          <div className="absolute top-40 right-20 w-72 h-72 bg-emerald-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-20 left-40 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+          <div className="absolute top-20 left-20 w-72 h-72 bg-project-blue rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+          <div className="absolute top-40 right-20 w-72 h-72 bg-project-blue-light rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-20 left-40 w-72 h-72 bg-project-blue-dark rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
@@ -96,38 +99,39 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center px-4 py-2 bg-teal-100 text-teal-800 rounded-full text-sm font-medium mb-6"
+                className="inline-flex items-center px-4 py-2 bg-blue-100 text-project-blue rounded-full text-sm font-medium mb-6"
               >
                 <Award className="w-4 h-4 mr-2" />
                 4th Place - AIM STARTUP & ACCELERATE AFRICA 2024
               </motion.div>
               
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                Digitally
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600">
-                  Transforming
+                {t('home.hero.title').split(' ').slice(0, 1).join(' ')}
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-project-blue to-project-blue-light">
+                  {t('home.hero.title').split(' ').slice(1, 3).join(' ')}
                 </span>
-                Healthcare in Africa
+                {t('home.hero.title').split(' ').slice(3).join(' ')}
               </h1>
               
               <p className="text-xl text-gray-600 mb-8 max-w-2xl">
-                Empowering patients and providers with secure, innovative digital health solutions. 
-                Take control of your health journey with Mi-Health, your personal health passport.
+                {t('home.hero.subtitle')}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link
-                  to="/mi-health"
-                  className="group bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
+                <a
+                  href="https://mi-healthapp.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-gradient-to-r from-project-blue to-project-blue-light text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
                 >
-                  Try Mi-Health
+                  {t('home.hero.cta1')}
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </a>
                 <Link
                   to="/about"
-                  className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full text-lg font-medium hover:border-teal-600 hover:text-teal-600 transition-all duration-200 flex items-center justify-center"
+                  className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full text-lg font-medium hover:border-project-blue hover:text-project-blue transition-all duration-200 flex items-center justify-center"
                 >
-                  Learn More
+                  {t('home.hero.cta2')}
                 </Link>
               </div>
             </motion.div>
@@ -177,7 +181,7 @@ const Home = () => {
                 variants={fadeInUp}
                 className="text-center"
               >
-                <div className="text-3xl md:text-4xl font-bold text-teal-600 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-project-blue mb-2">
                   {stat.number}
                 </div>
                 <div className="text-gray-600">{stat.label}</div>
@@ -198,11 +202,10 @@ const Home = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose NHA-HEALTHTECH?
+              {t('home.features.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're building the future of healthcare in Africa with cutting-edge technology 
-              and a deep understanding of local needs.
+              {t('home.features.subtitle')}
             </p>
           </motion.div>
 
@@ -219,7 +222,7 @@ const Home = () => {
                 variants={fadeInUp}
                 className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-project-blue to-project-blue-light rounded-2xl flex items-center justify-center mb-6">
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
@@ -255,9 +258,9 @@ const Home = () => {
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-teal-50 to-emerald-50 p-8 rounded-2xl"
+              className="bg-gradient-to-br from-blue-50 to-project-blue/10 p-8 rounded-2xl"
             >
-              <div className="w-16 h-16 bg-teal-600 rounded-2xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-project-blue rounded-2xl flex items-center justify-center mb-6">
                 <Smartphone className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Mi-Health</h3>
@@ -265,12 +268,14 @@ const Home = () => {
                 Your personal health passport. Secure, portable, and always accessible 
                 digital health records for you and your family.
               </p>
-              <Link
-                to="/mi-health"
-                className="inline-flex items-center text-teal-600 font-medium hover:text-teal-700"
+              <a
+                href="https://mi-healthapp.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-project-blue font-medium hover:text-project-blue-dark"
               >
-                Learn More <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
+                {t('common.learnMore')} <ArrowRight className="ml-2 w-4 h-4" />
+              </a>
             </motion.div>
 
             <motion.div
@@ -293,7 +298,7 @@ const Home = () => {
                 to="/solutions"
                 className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700"
               >
-                Learn More <ArrowRight className="ml-2 w-4 h-4" />
+                {t('common.learnMore')} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </motion.div>
 
@@ -317,7 +322,7 @@ const Home = () => {
                 to="/solutions"
                 className="inline-flex items-center text-purple-600 font-medium hover:text-purple-700"
               >
-                Learn More <ArrowRight className="ml-2 w-4 h-4" />
+                {t('common.learnMore')} <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </motion.div>
           </div>
@@ -372,7 +377,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-emerald-600">
+      <section className="py-20 bg-gradient-to-r from-project-blue to-project-blue-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={fadeInUp}
@@ -383,23 +388,25 @@ const Home = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Ready to Transform Your Healthcare Experience?
             </h2>
-            <p className="text-xl text-teal-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Join thousands of users who are already taking control of their health 
               with our innovative digital solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/mi-health"
-                className="bg-white text-teal-600 px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
+              <a
+                href="https://mi-healthapp.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-project-blue px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
               >
                 Get Started with Mi-Health
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
+              </a>
               <Link
                 to="/contact"
-                className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-teal-600 transition-all duration-200 flex items-center justify-center"
+                className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-project-blue transition-all duration-200 flex items-center justify-center"
               >
-                Contact Us
+                {t('common.contactUs')}
               </Link>
             </div>
           </motion.div>

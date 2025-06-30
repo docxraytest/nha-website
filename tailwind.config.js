@@ -3,6 +3,11 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      colors: {
+        'project-blue': '#05a5ce',
+        'project-blue-light': '#3bb8d6',
+        'project-blue-dark': '#048ba8',
+      },
       animation: {
         'blob': 'blob 7s infinite',
       },

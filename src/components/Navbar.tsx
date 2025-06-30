@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Plus } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
+import LanguageToggle from './LanguageToggle';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,12 +24,11 @@ const Navbar = () => {
   }, [location]);
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Solutions', path: '/solutions' },
-    { name: 'Mi-Health', path: '/mi-health' },
-    { name: 'Team', path: '/team' },
-    { name: 'Contact', path: '/contact' },
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.about'), path: '/about' },
+    { name: t('nav.solutions'), path: '/solutions' },
+    { name: t('nav.team'), path: '/team' },
+    { name: t('nav.contact'), path: '/contact' },
   ];
 
   return (
@@ -44,17 +46,19 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-200">
-                <Plus className="w-7 h-7 text-white" />
-              </div>
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full animate-pulse"></div>
+              <img 
+                src="/LOGO copy.png" 
+                alt="NHA-HEALTHTECH Logo" 
+                className="w-12 h-12 transform group-hover:scale-105 transition-transform duration-200"
+              />
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-project-blue rounded-full animate-pulse"></div>
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold">
                 <span className="text-gray-900">NHA</span>
-                <span className="text-teal-600">-HEALTHTECH</span>
+                <span className="text-project-blue">-HEALTHTECH</span>
               </span>
-              <span className="text-xs text-gray-600 -mt-1">Digitally transforming healthcare</span>
+              <span className="text-xs text-gray-600 -mt-1">{t('footer.tagline')}</span>
             </div>
           </Link>
 
@@ -66,15 +70,15 @@ const Navbar = () => {
                 to={item.path}
                 className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                   location.pathname === item.path
-                    ? 'text-teal-600'
-                    : 'text-gray-700 hover:text-teal-600'
+                    ? 'text-project-blue'
+                    : 'text-gray-700 hover:text-project-blue'
                 }`}
               >
                 {item.name}
                 {location.pathname === item.path && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-teal-600"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-project-blue"
                     initial={false}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
@@ -83,14 +87,17 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Button & Language Toggle */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link
-              to="/mi-health"
-              className="bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+            <LanguageToggle />
+            <a
+              href="https://mi-healthapp.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-project-blue to-project-blue-light text-white px-6 py-2.5 rounded-full text-sm font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-200"
             >
-              Try Mi-Health
-            </Link>
+              {t('nav.tryMiHealth')}
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -124,8 +131,8 @@ const Navbar = () => {
                     to={item.path}
                     className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors duration-200 ${
                       location.pathname === item.path
-                        ? 'text-teal-600 bg-teal-50'
-                        : 'text-gray-700 hover:text-teal-600 hover:bg-gray-50'
+                        ? 'text-project-blue bg-blue-50'
+                        : 'text-gray-700 hover:text-project-blue hover:bg-gray-50'
                     }`}
                   >
                     {item.name}
@@ -136,14 +143,17 @@ const Navbar = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navItems.length * 0.1 }}
-                className="pt-4 border-t border-gray-100"
+                className="pt-4 border-t border-gray-100 space-y-3"
               >
-                <Link
-                  to="/mi-health"
-                  className="block w-full bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-6 py-3 rounded-full text-center font-medium"
+                <LanguageToggle />
+                <a
+                  href="https://mi-healthapp.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full bg-gradient-to-r from-project-blue to-project-blue-light text-white px-6 py-3 rounded-full text-center font-medium"
                 >
-                  Try Mi-Health
-                </Link>
+                  {t('nav.tryMiHealth')}
+                </a>
               </motion.div>
             </div>
           </motion.div>
