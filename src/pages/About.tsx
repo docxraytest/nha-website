@@ -12,8 +12,11 @@ import {
   TrendingUp,
   CheckCircle
 } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const About = () => {
+  const { t } = useTranslation();
+  
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -31,69 +34,69 @@ const About = () => {
   const values = [
     {
       icon: Heart,
-      title: 'Patient-Centricity',
-      description: 'We place the patient at the heart of every product we design, ensuring their needs and experiences drive our innovation.'
+      title: t('about.values.patientCentric.title'),
+      description: t('about.values.patientCentric.description')
     },
     {
       icon: Shield,
-      title: 'Security & Trust',
-      description: 'We are uncompromising in our commitment to data privacy and security, building trust through transparency and reliability.'
+      title: t('about.values.security.title'),
+      description: t('about.values.security.description')
     },
     {
       icon: Lightbulb,
-      title: 'Innovation & Simplicity',
-      description: 'We leverage cutting-edge technology to create simple, elegant solutions to complex healthcare challenges.'
+      title: t('about.values.innovation.title'),
+      description: t('about.values.innovation.description')
     },
     {
       icon: Users,
-      title: 'Collaboration',
-      description: 'We believe in partnering with local healthcare providers, governments, and communities to drive meaningful change.'
+      title: t('about.values.collaboration.title'),
+      description: t('about.values.collaboration.description')
     }
   ];
 
   const milestones = [
     {
       year: '2023',
-      title: 'Company Founded',
-      description: 'NHA-HEALTHTECH was established in Cameroon with a vision to transform African healthcare.'
+      title: t('about.milestones.founded.title'),
+      description: t('about.milestones.founded.description')
     },
     {
       year: '2024',
-      title: 'National Recognition',
-      description: 'Secured 4th place in the AIM STARTUP & ACCELERATE AFRICA National Pitch Competition.'
+      title: t('about.milestones.recognition.title'),
+      description: t('about.milestones.recognition.description')
     },
     {
       year: '2024',
-      title: 'MVP Development',
-      description: 'Actively developing the Mi-Health Minimum Viable Product with 500+ early access users.'
+      title: t('about.milestones.mvp.title'),
+      description: t('about.milestones.mvp.description')
     },
     {
       year: '2024',
-      title: 'Healthcare Partnerships',
-      description: 'Engaged in discussions with 5+ healthcare facilities for pilot program implementation.'
+      title: t('about.milestones.partnerships.title'),
+      description: t('about.milestones.partnerships.description')
     }
   ];
 
   const problems = [
     {
-      title: 'Fragmented Health Records',
-      description: 'Patient data is siloed in different facilities, leading to repeated tests, medical errors, and incomplete patient histories.',
-      impact: '27+ million people affected in Cameroon alone'
+      title: t('about.problems.fragmented.title'),
+      description: t('about.problems.fragmented.description'),
+      impact: t('about.problems.fragmented.impact')
     },
     {
-      title: 'Poor Continuity of Care',
-      description: 'Lack of unified records makes it difficult to manage chronic diseases and coordinate care between specialists.',
-      impact: 'Especially critical for chronic disease management'
+      title: t('about.problems.continuity.title'),
+      description: t('about.problems.continuity.description'),
+      impact: t('about.problems.continuity.impact')
     },
     {
-      title: 'Limited Patient Empowerment',
-      description: 'Patients lack easy access to and control over their health information, diminishing their ability to participate actively in care.',
-      impact: 'Reduced patient engagement and outcomes'
+      title: t('about.problems.empowerment.title'),
+      description: t('about.problems.empowerment.description'),
+      impact: t('about.problems.empowerment.impact')
     },
     {
-      title: 'Geographical Barriers',
-      description: 'Remote and underserved populations struggle to access quality healthcare services due to distance and cost.',
-      impact: 'Rural populations disproportionately affected'
+      title: t('about.problems.geographical.title'),
+      description: t('about.problems.geographical.description'),
+      impact: t('about.problems.geographical.impact')
     }
   ];
 
@@ -104,21 +107,20 @@ const About = () => {
       className="min-h-screen pt-20"
     >
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-teal-50 via-white to-emerald-50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-project-blue/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={fadeInUp}
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              About
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600">
+              {t('about.hero.title')}
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-project-blue to-project-blue-light">
                 NHA-HEALTHTECH
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              We are a pre-seed HealthTech startup founded in Cameroon in 2023, dedicated to digitally 
-              transforming the African healthcare landscape through innovative, secure, and accessible solutions.
+              {t('about.hero.subtitle')}
             </p>
           </motion.div>
 
@@ -129,31 +131,27 @@ const About = () => {
           >
             <div>
               <img
-                src="https://images.pexels.com/photos/3938023/pexels-photo-3938023.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Healthcare Innovation"
                 className="rounded-2xl shadow-2xl"
               />
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">{t('about.story.title')}</h2>
               <p className="text-gray-600 mb-6">
-                Founded by a team combining deep medical insights with strong technical expertise, 
-                NHA-HEALTHTECH emerged from a recognition that Africa's healthcare systems needed 
-                innovative digital solutions tailored to local needs and challenges.
+                {t('about.story.paragraph1')}
               </p>
               <p className="text-gray-600 mb-6">
-                Our flagship product, Mi-Health, represents years of research and development focused 
-                on creating a patient-centric Personal Health Record system that empowers individuals 
-                while supporting healthcare providers across the continent.
+                {t('about.story.paragraph2')}
               </p>
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
-                  <Award className="w-5 h-5 text-teal-600" />
-                  <span className="text-sm font-medium text-gray-700">Award-Winning Innovation</span>
+                  <Award className="w-5 h-5 text-project-blue" />
+                  <span className="text-sm font-medium text-gray-700">{t('about.story.award')}</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Globe className="w-5 h-5 text-teal-600" />
-                  <span className="text-sm font-medium text-gray-700">Africa-Focused</span>
+                  <Globe className="w-5 h-5 text-project-blue" />
+                  <span className="text-sm font-medium text-gray-700">{t('about.story.focus')}</span>
                 </div>
               </div>
             </div>
@@ -170,15 +168,14 @@ const About = () => {
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-teal-50 to-emerald-50 p-8 rounded-2xl"
+              className="bg-gradient-to-br from-blue-50 to-project-blue/10 p-8 rounded-2xl"
             >
-              <div className="w-16 h-16 bg-teal-600 rounded-2xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-project-blue rounded-2xl flex items-center justify-center mb-6">
                 <Target className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.mission.title')}</h3>
               <p className="text-gray-600">
-                To promote and improve access to quality healthcare for all Africans through innovative, 
-                secure, and user-friendly digital solutions that bridge the gap between patients and providers.
+                {t('about.mission.description')}
               </p>
             </motion.div>
 
@@ -190,14 +187,12 @@ const About = () => {
               transition={{ delay: 0.1 }}
               className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl"
             >
-              <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-project-blue-dark rounded-2xl flex items-center justify-center mb-6">
                 <Eye className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.vision.title')}</h3>
               <p className="text-gray-600">
-                To create a connected and transparent healthcare ecosystem across Africa where every 
-                individual is empowered to manage their well-being, and every provider has the tools 
-                to deliver superior care.
+                {t('about.vision.description')}
               </p>
             </motion.div>
           </div>
@@ -215,11 +210,10 @@ const About = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Core Values
+              {t('about.values.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              These principles guide everything we do and shape how we approach 
-              healthcare innovation in Africa.
+              {t('about.values.subtitle')}
             </p>
           </motion.div>
 
@@ -236,7 +230,7 @@ const About = () => {
                 variants={fadeInUp}
                 className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-project-blue to-project-blue-light rounded-2xl flex items-center justify-center mb-6">
                   <value.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">{value.title}</h3>
@@ -258,11 +252,10 @@ const About = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Problems We Address
+              {t('about.problems.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Understanding the challenges facing African healthcare systems drives our 
-              commitment to creating meaningful solutions.
+              {t('about.problems.subtitle')}
             </p>
           </motion.div>
 
@@ -281,7 +274,7 @@ const About = () => {
               >
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">{problem.title}</h3>
                 <p className="text-gray-600 mb-4">{problem.description}</p>
-                <div className="flex items-center space-x-2 text-teal-600">
+                <div className="flex items-center space-x-2 text-project-blue">
                   <TrendingUp className="w-4 h-4" />
                   <span className="text-sm font-medium">{problem.impact}</span>
                 </div>
@@ -302,10 +295,10 @@ const About = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Journey
+              {t('about.milestones.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Key milestones that have shaped our path toward transforming African healthcare.
+              {t('about.milestones.subtitle')}
             </p>
           </motion.div>
 
@@ -317,7 +310,7 @@ const About = () => {
             className="relative"
           >
             {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-teal-200 hidden md:block"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-project-blue/20 hidden md:block"></div>
 
             <div className="space-y-12">
               {milestones.map((milestone, index) => (
@@ -326,7 +319,7 @@ const About = () => {
                   variants={fadeInUp}
                   className="relative flex items-start space-x-8"
                 >
-                  <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                  <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-project-blue to-project-blue-light rounded-full flex items-center justify-center text-white font-bold text-lg">
                     {milestone.year.slice(-2)}
                   </div>
                   <div className="flex-1 bg-white p-6 rounded-2xl shadow-lg">
@@ -344,7 +337,7 @@ const About = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-emerald-600">
+      <section className="py-20 bg-gradient-to-r from-project-blue to-project-blue-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={fadeInUp}
@@ -353,24 +346,23 @@ const About = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Join Us in Transforming Healthcare
+              {t('about.cta.title')}
             </h2>
-            <p className="text-xl text-teal-100 mb-8 max-w-3xl mx-auto">
-              Whether you're a healthcare provider, patient, or partner, we invite you to be part 
-              of the digital health revolution in Africa.
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              {t('about.cta.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
-                className="bg-white text-teal-600 px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                className="bg-white text-project-blue px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200"
               >
-                Get in Touch
+                {t('common.contactUs')}
               </a>
               <a
                 href="/team"
-                className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-teal-600 transition-all duration-200"
+                className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-project-blue transition-all duration-200"
               >
-                Meet Our Team
+                {t('about.cta.meetTeam')}
               </a>
             </div>
           </motion.div>

@@ -15,8 +15,11 @@ import {
   Wifi,
   Database
 } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Solutions = () => {
+  const { t } = useTranslation();
+  
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -45,9 +48,9 @@ const Solutions = () => {
         'AI-powered health insights',
         'QR code sharing with doctors'
       ],
-      color: 'from-teal-500 to-emerald-600',
-      bgColor: 'from-teal-50 to-emerald-50',
-      link: '/mi-health'
+      color: 'from-project-blue to-project-blue-light',
+      bgColor: 'from-blue-50 to-project-blue/10',
+      link: 'https://mi-healthapp.netlify.app/'
     },
     {
       id: 'nha-connect',
@@ -158,7 +161,7 @@ const Solutions = () => {
       className="min-h-screen pt-20"
     >
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-teal-50 via-white to-emerald-50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-project-blue/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={fadeInUp}
@@ -166,7 +169,7 @@ const Solutions = () => {
           >
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Our
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-project-blue to-project-blue-light">
                 Solution Suite
               </span>
             </h1>
@@ -214,22 +217,34 @@ const Solutions = () => {
                       ))}
                     </div>
 
-                    <Link
-                      to={solution.link}
-                      className={`inline-flex items-center px-6 py-3 bg-gradient-to-r ${solution.color} text-white rounded-full font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-200`}
-                    >
-                      Learn More
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Link>
+                    {solution.id === 'mi-health' ? (
+                      <a
+                        href={solution.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center px-6 py-3 bg-gradient-to-r ${solution.color} text-white rounded-full font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-200`}
+                      >
+                        {t('common.learnMore')}
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </a>
+                    ) : (
+                      <Link
+                        to={solution.link}
+                        className={`inline-flex items-center px-6 py-3 bg-gradient-to-r ${solution.color} text-white rounded-full font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-200`}
+                      >
+                        {t('common.learnMore')}
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Link>
+                    )}
                   </div>
                 </div>
 
                 <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
                   <img
                     src={`https://images.pexels.com/photos/${
-                      index === 0 ? '4386467' : index === 1 ? '5327585' : '3938023'
+                      index === 0 ? '5327585' : index === 1 ? '5327585' : '5327585'
                     }/pexels-photo-${
-                      index === 0 ? '4386467' : index === 1 ? '5327585' : '3938023'
+                      index === 0 ? '5327585' : index === 1 ? '5327585' : '5327585'
                     }.jpeg?auto=compress&cs=tinysrgb&w=800`}
                     alt={solution.title}
                     className="rounded-2xl shadow-2xl"
@@ -273,7 +288,7 @@ const Solutions = () => {
                 variants={fadeInUp}
                 className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-project-blue to-project-blue-light rounded-2xl flex items-center justify-center mb-6">
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
@@ -320,7 +335,7 @@ const Solutions = () => {
                 <ul className="space-y-4">
                   {benefit.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start space-x-3">
-                      <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 text-project-blue flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{item}</span>
                     </li>
                   ))}
@@ -332,7 +347,7 @@ const Solutions = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-emerald-600">
+      <section className="py-20 bg-gradient-to-r from-project-blue to-project-blue-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={fadeInUp}
@@ -343,21 +358,23 @@ const Solutions = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Ready to Experience the Future of Healthcare?
             </h2>
-            <p className="text-xl text-teal-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Join our pilot program and be among the first to experience the next generation 
               of digital health solutions designed specifically for Africa.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/mi-health"
-                className="bg-white text-teal-600 px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
+              <a
+                href="https://mi-healthapp.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-project-blue px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
               >
                 Try Mi-Health
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
+              </a>
               <Link
                 to="/contact"
-                className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-teal-600 transition-all duration-200 flex items-center justify-center"
+                className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-project-blue transition-all duration-200 flex items-center justify-center"
               >
                 Contact Sales
               </Link>

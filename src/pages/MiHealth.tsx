@@ -135,18 +135,18 @@ const MiHealth = () => {
       className="min-h-screen pt-20"
     >
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-teal-50 via-white to-emerald-50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-project-blue/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div variants={fadeInUp}>
-              <div className="inline-flex items-center px-4 py-2 bg-teal-100 text-teal-800 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-project-blue rounded-full text-sm font-medium mb-6">
                 <Smartphone className="w-4 h-4 mr-2" />
                 Your Personal Health Passport
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
                 Meet
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-project-blue to-project-blue-light">
                   Mi-Health
                 </span>
               </h1>
@@ -158,12 +158,17 @@ const MiHealth = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <button className="group bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                <a
+                  href="https://mi-healthapp.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-gradient-to-r from-project-blue to-project-blue-light text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
+                >
                   <Download className="mr-2 w-5 h-5" />
                   Join Waitlist
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full text-lg font-medium hover:border-teal-600 hover:text-teal-600 transition-all duration-200 flex items-center justify-center">
+                </a>
+                <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full text-lg font-medium hover:border-project-blue hover:text-project-blue transition-all duration-200 flex items-center justify-center">
                   <Play className="mr-2 w-5 h-5" />
                   Watch Demo
                 </button>
@@ -175,7 +180,7 @@ const MiHealth = () => {
                   <span>500+ Early Users</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Shield className="w-5 h-5 text-blue-500" />
+                  <Shield className="w-5 h-5 text-project-blue" />
                   <span>Bank-Level Security</span>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -193,7 +198,7 @@ const MiHealth = () => {
             >
               <div className="relative z-10">
                 <img
-                  src="https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  src="https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="Mi-Health App"
                   className="rounded-2xl shadow-2xl"
                 />
@@ -241,7 +246,7 @@ const MiHealth = () => {
                 variants={fadeInUp}
                 className="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-shadow duration-300"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-project-blue to-project-blue-light rounded-2xl flex items-center justify-center mb-6">
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
@@ -290,7 +295,7 @@ const MiHealth = () => {
                 <ul className="space-y-2">
                   {group.benefits.map((benefit, benefitIndex) => (
                     <li key={benefitIndex} className="flex items-center space-x-2 text-sm text-gray-600">
-                      <CheckCircle className="w-4 h-4 text-teal-600 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-project-blue flex-shrink-0" />
                       <span>{benefit}</span>
                     </li>
                   ))}
@@ -330,7 +335,7 @@ const MiHealth = () => {
                     transition={{ delay: index * 0.1 }}
                     className="flex items-center space-x-3"
                   >
-                    <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-project-blue flex-shrink-0" />
                     <span className="text-gray-700">{field}</span>
                   </motion.div>
                 ))}
@@ -409,7 +414,7 @@ const MiHealth = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-emerald-600">
+      <section className="py-20 bg-gradient-to-r from-project-blue to-project-blue-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={fadeInUp}
@@ -420,24 +425,29 @@ const MiHealth = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Take Control of Your Health Today
             </h2>
-            <p className="text-xl text-teal-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Join our early access program and be among the first to experience the future 
               of personal health management in Africa.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-teal-600 px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+              <a
+                href="https://mi-healthapp.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-project-blue px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
+              >
                 <Download className="mr-2 w-5 h-5" />
                 Join Waitlist
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
+              </a>
               <Link
                 to="/contact"
-                className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-teal-600 transition-all duration-200 flex items-center justify-center"
+                className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-project-blue transition-all duration-200 flex items-center justify-center"
               >
                 Contact Us
               </Link>
             </div>
-            <p className="text-teal-100 text-sm mt-4">
+            <p className="text-blue-100 text-sm mt-4">
               * Mi-Health is currently in development. Join our waitlist to be notified when it's available.
             </p>
           </motion.div>

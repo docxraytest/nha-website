@@ -10,8 +10,10 @@ import {
   Globe,
   CheckCircle
 } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,20 +37,18 @@ const Contact = () => {
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
     console.log('Form submitted:', formData);
     setIsSubmitted(true);
     
-    // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
@@ -61,49 +61,53 @@ const Contact = () => {
     }, 3000);
   };
 
+  const handleWhatsAppClick = (number: string) => {
+    window.open(`https://wa.me/237${number}`, '_blank');
+  };
+
   const contactInfo = [
     {
       icon: Mail,
-      title: 'Email Us',
-      details: 'contact@nha-healthtech.com',
-      description: 'Send us an email and we\'ll respond within 24 hours'
+      title: t('contact.info.email.title'),
+      details: 'info@nhahealthtech.com',
+      description: t('contact.info.email.description')
     },
     {
       icon: Phone,
-      title: 'Call Us',
-      details: '+237 XXX XXX XXX',
-      description: 'Mon-Fri from 8am to 6pm WAT'
+      title: t('contact.info.phone.title'),
+      details: '678580260, 674063317',
+      description: t('contact.info.phone.description')
     },
     {
       icon: MapPin,
-      title: 'Visit Us',
-      details: 'Yaoundé, Cameroon',
-      description: 'Come say hello at our headquarters'
+      title: t('contact.info.address.title'),
+      details: 'Technipole Building, Polytechnic Yde, Yaoundé, Cameroon',
+      description: t('contact.info.address.description')
     }
   ];
 
   const officeHours = [
-    { day: 'Monday - Friday', hours: '8:00 AM - 6:00 PM WAT' },
-    { day: 'Saturday', hours: '9:00 AM - 2:00 PM WAT' },
-    { day: 'Sunday', hours: 'Closed' }
+    { day: t('contact.hours.weekdays'), hours: '8:00 AM - 6:00 PM WAT' },
+    { day: t('contact.hours.saturday'), hours: '9:00 AM - 2:00 PM WAT' },
+    { day: t('contact.hours.sunday'), hours: t('contact.hours.closed') }
   ];
 
   const faqs = [
     {
-      question: 'When will Mi-Health be available?',
-      answer: 'Mi-Health is currently in development. We\'re planning a pilot launch in Q2 2024. Join our waitlist to be notified when it\'s available.'
+      question: t('contact.faq.availability.question'),
+      answer: t('contact.faq.availability.answer')
     },
     {
-      question: 'How secure is my health data?',
-      answer: 'We use military-grade encryption (AES-256) and follow international healthcare data security standards. Your data is always under your control.'
+      question: t('contact.faq.security.question'),
+      answer: t('contact.faq.security.answer')
     },
     {
-      question: 'Can healthcare providers integrate with your platform?',
-      answer: 'Yes! We offer integration solutions for healthcare facilities through our NHA-Clinic platform. Contact us to discuss your specific needs.'
+      question: t('contact.faq.integration.question'),
+      answer: t('contact.faq.integration.answer')
     },
     {
-      question: 'Do you offer support in local languages?',
-      answer: 'Currently, our platform supports English and French. We\'re working on adding more local African languages in future updates.'
+      question: t('contact.faq.languages.question'),
+      answer: t('contact.faq.languages.answer')
     }
   ];
 
@@ -114,21 +118,20 @@ const Contact = () => {
       className="min-h-screen pt-20"
     >
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-teal-50 via-white to-emerald-50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-project-blue/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={fadeInUp}
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Get in
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600">
-                Touch
+              {t('contact.hero.title')}
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-project-blue to-project-blue-light">
+                {t('contact.hero.titleHighlight')}
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Have questions about our solutions? Want to partner with us? 
-              We'd love to hear from you. Let's start a conversation about transforming healthcare together.
+              {t('contact.hero.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -145,7 +148,7 @@ const Contact = () => {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Send us a message</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('contact.form.title')}</h2>
               
               {isSubmitted ? (
                 <motion.div
@@ -154,15 +157,15 @@ const Contact = () => {
                   className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center"
                 >
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-green-800 mb-2">Message Sent!</h3>
-                  <p className="text-green-600">Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                  <h3 className="text-xl font-semibold text-green-800 mb-2">{t('contact.form.success.title')}</h3>
+                  <p className="text-green-600">{t('contact.form.success.message')}</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        Full Name *
+                        {t('contact.form.name')} *
                       </label>
                       <input
                         type="text"
@@ -171,13 +174,13 @@ const Contact = () => {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-colors duration-200"
-                        placeholder="Your full name"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-project-blue focus:border-transparent transition-colors duration-200"
+                        placeholder={t('contact.form.namePlaceholder')}
                       />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address *
+                        {t('contact.form.email')} *
                       </label>
                       <input
                         type="email"
@@ -186,15 +189,15 @@ const Contact = () => {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-colors duration-200"
-                        placeholder="your@email.com"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-project-blue focus:border-transparent transition-colors duration-200"
+                        placeholder={t('contact.form.emailPlaceholder')}
                       />
                     </div>
                   </div>
 
                   <div>
                     <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                      Company/Organization
+                      {t('contact.form.company')}
                     </label>
                     <input
                       type="text"
@@ -202,14 +205,14 @@ const Contact = () => {
                       name="company"
                       value={formData.company}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-colors duration-200"
-                      placeholder="Your company name"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-project-blue focus:border-transparent transition-colors duration-200"
+                      placeholder={t('contact.form.companyPlaceholder')}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      Subject *
+                      {t('contact.form.subject')} *
                     </label>
                     <select
                       id="subject"
@@ -217,21 +220,21 @@ const Contact = () => {
                       required
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-colors duration-200"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-project-blue focus:border-transparent transition-colors duration-200"
                     >
-                      <option value="">Select a subject</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="partnership">Partnership Opportunity</option>
-                      <option value="support">Technical Support</option>
-                      <option value="demo">Request Demo</option>
-                      <option value="press">Press & Media</option>
-                      <option value="careers">Careers</option>
+                      <option value="">{t('contact.form.subjectPlaceholder')}</option>
+                      <option value="general">{t('contact.form.subjects.general')}</option>
+                      <option value="partnership">{t('contact.form.subjects.partnership')}</option>
+                      <option value="support">{t('contact.form.subjects.support')}</option>
+                      <option value="demo">{t('contact.form.subjects.demo')}</option>
+                      <option value="press">{t('contact.form.subjects.press')}</option>
+                      <option value="careers">{t('contact.form.subjects.careers')}</option>
                     </select>
                   </div>
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message *
+                      {t('contact.form.message')} *
                     </label>
                     <textarea
                       id="message"
@@ -240,17 +243,17 @@ const Contact = () => {
                       rows={6}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-colors duration-200"
-                      placeholder="Tell us more about your inquiry..."
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-project-blue focus:border-transparent transition-colors duration-200"
+                      placeholder={t('contact.form.messagePlaceholder')}
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-8 py-4 rounded-lg text-lg font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
+                    className="w-full bg-gradient-to-r from-project-blue to-project-blue-light text-white px-8 py-4 rounded-lg text-lg font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
                   >
                     <Send className="mr-2 w-5 h-5" />
-                    Send Message
+                    {t('contact.form.submit')}
                   </button>
                 </form>
               )}
@@ -264,18 +267,41 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Information</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">{t('contact.info.title')}</h2>
               
               <div className="space-y-8 mb-12">
                 {contactInfo.map((info, index) => (
                   <div key={info.title} className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-gradient-to-br from-project-blue to-project-blue-light rounded-xl flex items-center justify-center flex-shrink-0">
                       <info.icon className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-1">{info.title}</h3>
-                      <p className="text-teal-600 font-medium mb-1">{info.details}</p>
-                      <p className="text-gray-600 text-sm">{info.description}</p>
+                      {info.title === t('contact.info.phone.title') ? (
+                        <div className="space-y-1">
+                          <button 
+                            onClick={() => handleWhatsAppClick('678580260')}
+                            className="text-project-blue font-medium hover:text-project-blue-dark flex items-center space-x-1"
+                          >
+                            <span>678580260</span>
+                            <MessageCircle className="w-4 h-4" />
+                          </button>
+                          <button 
+                            onClick={() => handleWhatsAppClick('674063317')}
+                            className="text-project-blue font-medium hover:text-project-blue-dark flex items-center space-x-1"
+                          >
+                            <span>674063317</span>
+                            <MessageCircle className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ) : info.title === t('contact.info.email.title') ? (
+                        <a href={`mailto:${info.details}`} className="text-project-blue font-medium hover:text-project-blue-dark">
+                          {info.details}
+                        </a>
+                      ) : (
+                        <p className="text-project-blue font-medium">{info.details}</p>
+                      )}
+                      <p className="text-gray-600 text-sm mt-1">{info.description}</p>
                     </div>
                   </div>
                 ))}
@@ -284,8 +310,8 @@ const Contact = () => {
               {/* Office Hours */}
               <div className="bg-gray-50 p-6 rounded-2xl mb-8">
                 <div className="flex items-center space-x-3 mb-4">
-                  <Clock className="w-6 h-6 text-teal-600" />
-                  <h3 className="text-lg font-semibold text-gray-900">Office Hours</h3>
+                  <Clock className="w-6 h-6 text-project-blue" />
+                  <h3 className="text-lg font-semibold text-gray-900">{t('contact.hours.title')}</h3>
                 </div>
                 <div className="space-y-2">
                   {officeHours.map((schedule, index) => (
@@ -298,29 +324,31 @@ const Contact = () => {
               </div>
 
               {/* Quick Links */}
-              <div className="bg-gradient-to-br from-teal-50 to-emerald-50 p-6 rounded-2xl">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+              <div className="bg-gradient-to-br from-blue-50 to-project-blue/10 p-6 rounded-2xl">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('contact.quickActions.title')}</h3>
                 <div className="space-y-3">
                   <a
-                    href="/mi-health"
-                    className="flex items-center space-x-3 text-teal-600 hover:text-teal-700 transition-colors duration-200"
+                    href="https://mi-healthapp.netlify.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 text-project-blue hover:text-project-blue-dark transition-colors duration-200"
                   >
                     <MessageCircle className="w-5 h-5" />
-                    <span>Join Mi-Health Waitlist</span>
+                    <span>{t('contact.quickActions.joinWaitlist')}</span>
                   </a>
                   <a
                     href="/solutions"
-                    className="flex items-center space-x-3 text-teal-600 hover:text-teal-700 transition-colors duration-200"
+                    className="flex items-center space-x-3 text-project-blue hover:text-project-blue-dark transition-colors duration-200"
                   >
                     <Globe className="w-5 h-5" />
-                    <span>Explore Our Solutions</span>
+                    <span>{t('contact.quickActions.exploreSolutions')}</span>
                   </a>
                   <a
-                    href="mailto:partnerships@nha-healthtech.com"
-                    className="flex items-center space-x-3 text-teal-600 hover:text-teal-700 transition-colors duration-200"
+                    href="mailto:info@nhahealthtech.com"
+                    className="flex items-center space-x-3 text-project-blue hover:text-project-blue-dark transition-colors duration-200"
                   >
                     <Mail className="w-5 h-5" />
-                    <span>Partnership Inquiries</span>
+                    <span>{t('contact.quickActions.partnerships')}</span>
                   </a>
                 </div>
               </div>
@@ -340,10 +368,10 @@ const Contact = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Frequently Asked Questions
+              {t('contact.faq.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Find answers to common questions about our solutions and services.
+              {t('contact.faq.subtitle')}
             </p>
           </motion.div>
 
@@ -369,7 +397,7 @@ const Contact = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-emerald-600">
+      <section className="py-20 bg-gradient-to-r from-project-blue to-project-blue-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={fadeInUp}
@@ -378,24 +406,23 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Transform Healthcare Together?
+              {t('contact.cta.title')}
             </h2>
-            <p className="text-xl text-teal-100 mb-8 max-w-3xl mx-auto">
-              Whether you're a healthcare provider, patient, or potential partner, 
-              we're excited to explore how we can work together to improve healthcare in Africa.
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              {t('contact.cta.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:partnerships@nha-healthtech.com"
-                className="bg-white text-teal-600 px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                href="mailto:info@nhahealthtech.com"
+                className="bg-white text-project-blue px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transform hover:scale-105 transition-all duration-200"
               >
-                Explore Partnerships
+                {t('contact.cta.partnerships')}
               </a>
               <a
                 href="/about"
-                className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-teal-600 transition-all duration-200"
+                className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-project-blue transition-all duration-200"
               >
-                Learn More About Us
+                {t('contact.cta.learnMore')}
               </a>
             </div>
           </motion.div>
